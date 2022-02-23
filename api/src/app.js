@@ -2,7 +2,10 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const routes = require('./routes/index.js');
+const dogs = require('./routes/dogs.js');
+const temperament = require('./routes/temperament');
+const dog = require('./routes/dog');
+const searchId = require('./routes/searchId');
 
 require('./db.js');
 
@@ -22,7 +25,11 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', routes);
+// server.use('/', routes);
+server.use('/dogs', dogs);
+server.use('/temperament', temperament);
+server.use('/dog', dog);
+server.use('/dogs/', searchId);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
