@@ -1,0 +1,66 @@
+.nav{
+    padding: 35px;
+    background-color: aquamarine;
+    border-radius: 8px;
+}
+
+
+.general {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.card {
+    width: 500px;
+    border-radius: 20px;
+    background-color: rgb(230, 224, 224);
+    box-shadow: 5px 5px lightsteelblue ;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+
+}
+.pad {
+    padding: 10px;
+}
+
+.select {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.danger {
+    color: red;
+}
+
+.tem {
+    margin: 20px;
+}
+
+
+.temperamento {
+    padding: 5px;
+    margin: 15px;
+    border-radius: 5px;
+    background-color: burlywood;
+}
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.button {
+    margin-left: 5px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.button:hover {
+    background-color: rgb(226, 83, 83);
+}

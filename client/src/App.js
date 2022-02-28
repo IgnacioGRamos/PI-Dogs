@@ -4,6 +4,9 @@ import {BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Inicio from './components/inicio.js';
 import Home from "./components/Home";
+import CreateRaza from "./components/Create";
+import Detail from "./components/Detail";
+import Nav from "./components/NavBar";
 
 
 function App() {
@@ -14,7 +17,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Inicio /> } />
-        <Route exact path="/home" element={<Home /> } />
+        <Route path="/home" element={<Home /> } />
+        <Route path="/create" element={<CreateRaza /> } />
+        <Route path="/home/:id" element={<Detail /> } />
+        {/* <Route path="/home" element={<Nav /> } /> */}
       </Routes>
     </BrowserRouter>
   );

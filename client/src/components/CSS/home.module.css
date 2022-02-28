@@ -1,0 +1,28 @@
+
+.nav{
+    padding: 35px;
+    background-color: aquamarine;
+    border-radius: 8px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search {
+    
+    padding: 15px;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}

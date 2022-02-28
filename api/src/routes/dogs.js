@@ -12,15 +12,20 @@ const router = express.Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.use(express.json());
 
+const {
+    API_KEY
+} = process.env;
+
 
 const getApiInfo = async () => {
-    const url = await axios.get("https://api.thedogapi.com/v1/breeds?apikey=8ea16dc8-cee3-4bc3-851b-7872859f6b62");
+    const url = await axios.get(`https://api.thedogapi.com/v1/breeds?apikey=${API_KEY}`);
     const apiInfo = await url.data.map( ob => {
         if( ob.temperament === undefined ) {
             return {
                 id: ob.id,
                 nombre: ob.name,
-                temperamento: 'Unknown',
+                peso: ob.weight.metric,
+                temperamento: 'No hay datos sobre el temperamento',
                 image: ob.image.url
             }
         }
@@ -28,6 +33,7 @@ const getApiInfo = async () => {
             return {
                 id: ob.id,
                 nombre: ob.name,
+                peso: ob.weight.metric,
                 temperamento: ob.temperament,
                 image: ob.image.url
             }

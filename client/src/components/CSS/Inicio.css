@@ -1,0 +1,37 @@
+.general {
+    width: 1440;
+    height: 713.60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./img/back4.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.conteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo {
+    font-size: xxx-large;
+    margin-bottom: 300px;
+    color:rgb(104, 94, 94);
+}
+
+.explore {
+    border: 10px;
+    padding: 10px;
+    margin: 30px;
+    border-radius: 5px;
+    opacity: 0.6;
+    font-size: large;
+} 
+
+.explore:hover {
+    background-color: lightseagreen;
+}
+
+

@@ -12,9 +12,13 @@ const router = express.Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.use(express.json());
 
+const {
+    API_KEY
+} = process.env;
+
 
 module.exports = router.get('/', async (req, res) => {
-    const url = await axios.get("https://api.thedogapi.com/v1/breeds?apikey=8ea16dc8-cee3-4bc3-851b-7872859f6b62");
+    const url = await axios.get(`https://api.thedogapi.com/v1/breeds?apikey=${API_KEY}`);
     const apiInfo = await url.data.map( ob => {
         if( ob.temperament === undefined ) {
             return ['No tiene temperamento']

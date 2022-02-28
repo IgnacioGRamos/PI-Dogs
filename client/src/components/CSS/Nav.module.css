@@ -1,0 +1,38 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text {
+    text-decoration: none;
+    font-size: large;
+    color: black;
+    border: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: antiquewhite;
+}
+
+.text1 {
+    text-decoration: none;
+    font-size: large;
+    color: black;
+    border: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: antiquewhite;
+}
+
+.text:hover {
+    background-color: rgb(235, 183, 115);
+}
+
+.text1:hover {
+    background-color:  rgb(235, 183, 115);
+}
+.span {
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+}
+

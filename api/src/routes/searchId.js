@@ -6,18 +6,21 @@ const { Raza, Temperamento } = require('../db.js')
 const router = express.Router();
 router.use(express.json());
 
+const {
+    API_KEY
+} = process.env;
 
 
 
 const getApiInfo = async () => {
-    const url = await axios.get("https://api.thedogapi.com/v1/breeds?apikey=8ea16dc8-cee3-4bc3-851b-7872859f6b62");
+    const url = await axios.get(`https://api.thedogapi.com/v1/breeds?apikey=${API_KEY}`);
     const apiInfo = await url.data.map( ob => {
         if( ob.temperament === undefined ) {
             return {
                 id: ob.id,
                 nombre: ob.name,
-                altura: ob.height,
-                peso: ob.weight,
+                altura: ob.height.metric,
+                peso: ob.weight.metric,
                 añosdevida: ob.life_span,
                 temperamento: 'Unknown',
                 image: ob.image.url
@@ -27,8 +30,8 @@ const getApiInfo = async () => {
             return {
                 id: ob.id,
                 nombre: ob.name,
-                altura: ob.height,
-                peso: ob.weight,
+                altura: ob.height.metric,
+                peso: ob.weight.metric,
                 añosdevida: ob.life_span,
                 temperamento: ob.temperament,
                 image: ob.image.url

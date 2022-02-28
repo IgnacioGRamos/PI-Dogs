@@ -1,0 +1,41 @@
+.general {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+.card {
+    width: 650px;
+    border-radius: 20px;
+    background-color: rgb(230, 224, 224);
+    box-shadow: 5px 5px lightsteelblue ;
+}
+
+.nav{
+    padding: 35px;
+    background-color: aquamarine;
+    border-radius: 8px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.img{
+    width: 500px;
+    height: 350px;
+    padding-bottom: 10px;
+}
+
+.button {
+    width: 50px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    background-color: black;
+    border-radius: 7px;
+}
+.volver {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}

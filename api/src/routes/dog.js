@@ -33,9 +33,11 @@ module.exports = router.post('/', async (req, res) => {
     })
 
     const temperamentDb = await Temperamento.findAll({ where: { nombre: temperamento }});
+    console.log(temperamentDb)
     
 
     razaCreated.addTemperamento(temperamentDb)
+    console.log(razaCreated)
     res.send('Nueva raza creada con exito')
        
 });

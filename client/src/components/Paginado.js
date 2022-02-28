@@ -1,16 +1,17 @@
 import React from 'react';
+import style from './CSS/paginado.module.css'
 
 
 export default function Paginado({razasPerPage, allRazas, paginado}) {
     const pageNumbers = [];
 
-    for( var i = 0; i <= Math.ceil(allRazas/razasPerPage); i++) {
-        pageNumbers.push(i + 1)
+    for( var i = 1; i <= Math.ceil(allRazas/razasPerPage); i++) {
+        pageNumbers.push(i)
     }
 
 
     return (
-        <nav>
+        <nav className={style.paginado}>
             <ul>
                 {pageNumbers && 
                 pageNumbers.map(number => (
