@@ -75,6 +75,7 @@ module.exports = router.get('/', async (req, res) => {
         dog.length ? 
         res.status(200).send(dog):
         res.status(404).send('No se encontro la Raza')
+        
     }
     else {
         res.status(200).send(allDogs)

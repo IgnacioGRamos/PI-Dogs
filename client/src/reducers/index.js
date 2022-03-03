@@ -56,6 +56,12 @@ const initialState = {
           detail: action.payload
         }
 
+        case 'SET_DETAIL':
+          return {
+            ...state,
+            detail: action.payload
+          }
+
       case 'ORDER_BY_NAME':
         let arr;
         if(action.payload === 'A-Z') {

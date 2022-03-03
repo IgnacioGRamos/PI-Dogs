@@ -3,11 +3,12 @@ import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getRazas, filterCreated, orderByName, getTemperaments, filterByTemperament } from '../actions';
 import { Link } from 'react-router-dom';
-import style from './CSS/home.module.css'
-import Card from './Card';
+import style from './CSS/home.module.css';
 import Paginado from './Paginado';
 import SearchBar from './SearchBar';
 import Nav from './NavBar';
+import Card from './Card';
+
 
 
 export default function Home() {
@@ -31,13 +32,13 @@ export default function Home() {
         setCurrentPage(pageNumber)
     }
 
-    useEffect(() => {       // esto remplaza al mapdispatchtoprops
-        dispatch(getRazas())   
-    },[dispatch]);
+    // useEffect(() => {       // esto remplaza al mapdispatchtoprops
+    //     dispatch(getRazas())   
+    // },[dispatch]);
 
-    useEffect(() => {
-        dispatch(getTemperaments())
-    }, []);
+    // useEffect(() => {
+    //     dispatch(getTemperaments())
+    // }, []);
 
     function handleFilterCreated(e) {
         dispatch(filterCreated(e.target.value))
@@ -102,15 +103,15 @@ export default function Home() {
                 {currentRazas?.map((el) => {
                     if(el.createdInDb) {
                        return ( 
-                                <Link to={`/home/${el.id}`} className={style.link}>   
-                                    <Card nombre={el.nombre} id={el.id} peso={el.peso} image={el.image ? el.image : url} temperamento={el.temperamentos.map(el => el.nombre)} key={el.id} />
-                                </Link>
+                            <Link to={`/home/${el.id}`} className={style.link} value={el.id} >   
+                                <Card nombre={el.nombre} id={el.id} peso={el.peso} image={el.image ? el.image : url} temperamento={el.temperamentos.map(el => el.nombre)} key={el.id} />
+                            </Link>                            
                         )
 
                     } else {
                         return ( 
-                            <Link to={`/home/${el.id}`} className={style.link}> 
-                                <Card nombre={el.nombre} id={el.id} peso={el.peso} image={el.image ? el.image : url} temperamento={el.temperamento.split(',')} key={el.id} />
+                            <Link to={`/home/${el.id}`} className={style.link} value={el.id} > 
+                                 <Card nombre={el.nombre} id={el.id} peso={el.peso} image={el.image ? el.image : url} temperamento={el.temperamento.split(',')} key={el.id} />
                             </Link >
                         )
                     }

@@ -37,9 +37,9 @@ export default function CreateRaza() {
 
     })
 
-    useEffect(() => {
-        dispatch(getTemperaments())
-    }, []);
+    // useEffect(() => {
+    //     dispatch(getTemperaments())
+    // }, []);
 
     function handleChange(e) {
         setInput({

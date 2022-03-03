@@ -2,7 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './CSS/Inicio.css'
 
+import { useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import { getRazas, getTemperaments} from '../actions';
+
 export default function Inicio() {
+
+  const dispatch = useDispatch();
+
+
+    useEffect(() => {       // esto remplaza al mapdispatchtoprops
+      dispatch(getRazas())   
+  },[dispatch]);
+
+  useEffect(() => {
+      dispatch(getTemperaments())
+  }, []);
+
   return (
     <div className='general'>
       <div className='conteiner' >

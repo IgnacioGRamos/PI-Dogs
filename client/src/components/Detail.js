@@ -1,25 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, setTimeout } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../actions";
+import { getDetail, setDetail } from "../actions";
 import { useParams } from 'react-router-dom';
 import Nav from './NavBar';
 import style from './CSS/detail.module.css'
 
 
 
-export default function Detail(props) {
+export default function Detail() {
     const dispatch = useDispatch();
+    const myRaza =  useSelector((state) => state.detail);
+    const url = 'https://st2.depositphotos.com/5486388/8308/v/600/depositphotos_83088988-stock-illustration-dog-face-silhouette.jpg';
+    
     const { id } = useParams();
 
     useEffect(() => {
         dispatch(getDetail(id))
     }, [dispatch]);
 
-    const myRaza = useSelector((state) => state.detail);
+    
 
-
-    const url = 'https://st2.depositphotos.com/5486388/8308/v/600/depositphotos_83088988-stock-illustration-dog-face-silhouette.jpg';
+    function handleSetDetail() {
+        dispatch(setDetail())
+    }
+    
 
     return(
         <div >
@@ -27,6 +32,7 @@ export default function Detail(props) {
                <Nav />
             </div>
             <div className={style.general}>
+
                 {myRaza.length > 0 ? 
                 <div className={style.card}>
                     <h1 className={style.center}>{myRaza[0].nombre}</h1>
@@ -43,11 +49,12 @@ export default function Detail(props) {
 
                 </div>
                 :
-                <h1>Raza not found</h1>
+                <h1 className="loader">Loading...</h1>
                 }
+
             </div>
             <div className={style.volver}>
-                <Link to='/home' className={style.button}>Volver</Link>
+                <Link to='/home' className={style.button} onClick={() => handleSetDetail()} >Volver</Link>
             </div>
             
         </div>

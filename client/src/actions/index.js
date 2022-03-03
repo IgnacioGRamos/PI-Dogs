@@ -86,3 +86,13 @@ export function getDetail(id) {
     }
   }
 }
+
+
+export function setDetail() {
+  return{
+    type:'SET_DETAIL',
+    payload: []
+  }
+
+}
+
