@@ -15,19 +15,25 @@ router.use(express.json());
 module.exports = router.post('/', async (req, res) => {
     const {
         nombre,
-        altura,
-        peso,
+        alturaMin,
+        alturaMax,
+        pesoMin,
+        pesoMax,
         image,
-        añosdevida,
+        añosdevidaMin,
+        añosdevidaMax,
         createdInDb,
         temperamento
     } = req.body;
 
     const razaCreated = await Raza.create({
         nombre,
-        altura,
-        peso,
-        añosdevida,
+        alturaMin,
+        alturaMax,
+        pesoMin,
+        pesoMax,
+        añosdevidaMin,
+        añosdevidaMax,
         image,
         createdInDb
     })

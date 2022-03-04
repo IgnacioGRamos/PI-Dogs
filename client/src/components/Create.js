@@ -11,11 +11,17 @@ function validate(input) {
     let errors = {};
     if (!input.nombre) {
       errors.nombre = 'Nombre is required';
-    } else if (!input.altura) {
-      errors.altura = 'Altura is required';
+    } else if (!input.alturaMin) {
+      errors.alturaMin = 'Altura Mínima  is required';
     }
-    else if (!input.peso) {
-        errors.peso = 'Peso is required';
+    else if (!input.alturaMax) {
+        errors.alturaMax = 'Altura Máxima  is required';
+      }
+    else if (!input.pesoMin) {
+        errors.pesoMin = 'Peso Mínimo is required';
+      }
+      else if (!input.pesoMax) {
+        errors.pesoMax = 'Peso Máximo is required';
       }
     return errors;
 };
@@ -26,20 +32,32 @@ export default function CreateRaza() {
     // const history = useHistory();
     const temperaments = useSelector((state) => state.temperamentos);
     const [errors, setErrors] = useState({});
+    const [temperamentos, setTemperamentos] = useState([]);
+    
 
     const [input, setInput] = useState({
         nombre: '',
-        altura: '',
-        peso:'',
+        alturaMin: '',
+        alturaMax: '',
+        pesoMin:'',
+        pesoMax:'',
         image:'',
-        añosdevida: '',
+        añosdevidaMin: '',
+        añosdevidaMax: '',
         temperamento: []
 
     })
 
-    // useEffect(() => {
-    //     dispatch(getTemperaments())
-    // }, []);
+    useEffect(() => {
+        dispatch(getTemperaments())
+    }, []);
+
+    useEffect(() => {
+        setInput({
+             ...input, 
+            temperamento: [...temperamentos] 
+        })
+    }, [temperamentos]);
 
     function handleChange(e) {
         setInput({
@@ -54,27 +72,43 @@ export default function CreateRaza() {
     }
     
     function handleSelect(e){
-        setInput({
-            ...input,
-            temperamento: [...input.temperamento, e.target.value]
-        })
+        const name = e.target.value;
+
+        if(!temperamentos.includes(name)) {
+            setTemperamentos([
+                ...temperamentos, 
+                name
+            ])
+        }
     };
+
+
+
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(postRaza(input))
         alert('Raza creada con exito');
         setInput({
             nombre: '',
-            altura: '',
-            peso:'',
+            alturaMin: '',
+            alturaMax: '',
+            pesoMin:'',
+            pesoMax:'',
             image:'',
-            añosdevida: '',
+            añosdevidaMin: '',
+            añosdevidaMax: '',
             temperamento: []
     
         });
+        setTemperamentos([]);
         // history.push('/home')
     }
     function handleDelete(el) {
+
+        setTemperamentos(
+            temperamentos.filter( tem => tem !== el)
+        )
+
         setInput({
             ...input,
             temperamento: input.temperamento.filter( tem => tem !== el)
@@ -104,17 +138,31 @@ export default function CreateRaza() {
                     )}
                 </div>
                 <div className={style.pad}>
-                    <label>Altura: </label>
-                    <input type='text' placeholder="Min - Max" value={input.altura} name ='altura' onChange={(e) => handleChange(e)} />
-                    {errors.altura && (
-                      <p className={style.danger}>{errors.altura}</p>
+                    <label>Altura Mínima: </label>
+                    <input type='text' placeholder="Min" value={input.alturaMin} name ='alturaMin' onChange={(e) => handleChange(e)} />
+                    {errors.alturaMin && (
+                      <p className={style.danger}>{errors.alturaMin}</p>
                     )}
                 </div>
                 <div className={style.pad}>
-                    <label>Peso: </label>
-                    <input type='text' placeholder="Min - Max" value={input.peso} name ='peso' onChange={(e) => handleChange(e)} />
-                    {errors.peso && (
-                    <p className={style.danger}>{errors.peso}</p>
+                    <label>Altura Máxima: </label>
+                    <input type='text' placeholder="Max" value={input.alturaMax} name ='alturaMax' onChange={(e) => handleChange(e)} />
+                    {errors.alturaMax && (
+                      <p className={style.danger}>{errors.alturaMax}</p>
+                    )}
+                </div>
+                <div className={style.pad}>
+                    <label>Peso Mínimo: </label>
+                    <input type='text' placeholder="Min" value={input.pesoMin} name ='pesoMin' onChange={(e) => handleChange(e)} />
+                    {errors.pesoMin && (
+                    <p className={style.danger}>{errors.pesoMin}</p>
+                    )}
+                </div>
+                <div className={style.pad}>
+                    <label>Peso Máxima: </label>
+                    <input type='text' placeholder="Min" value={input.pesoMax} name ='pesoMax' onChange={(e) => handleChange(e)} />
+                    {errors.pesoMax && (
+                    <p className={style.danger}>{errors.pesoMax}</p>
                     )}
                 </div>
                 <div className={style.pad}>
@@ -122,18 +170,22 @@ export default function CreateRaza() {
                     <input type='text' placeholder="url" value={input.image} name ='image' onChange={(e) => handleChange(e)} />
                 </div>
                 <div className={style.pad}>
-                    <label>Años de Vida: </label>
-                    <input type='text' placeholder="Min - Max" value={input.añosdevida} name ='añosdevida' onChange={(e) => handleChange(e)} />
+                    <label>Años de Vida Mínimo: </label>
+                    <input type='text' placeholder="Min" value={input.añosdevidaMin} name ='añosdevidaMin' onChange={(e) => handleChange(e)} />
+                </div>
+                <div className={style.pad}>
+                    <label>Años de Vida Máximo: </label>
+                    <input type='text' placeholder="Max" value={input.añosdevidaMax} name ='añosdevidaMax' onChange={(e) => handleChange(e)} />
                 </div>
                 <div className={style.select}>
                     <select onChange={(e) => handleSelect(e)} >
                         {temperaments.map((tem) => (
-                            <option value={tem.nombre} >{tem.nombre}</option>
+                            <option value={tem.nombre} id={tem.nombre}>{tem.nombre}</option>
                         ))}
                     </select>
                 </div>
 
-                { input.nombre && !errors.nombre && !errors.altura && !errors.peso && (
+                { input.nombre && !errors.nombre && !errors.alturaMin && !errors.alturaMax && !errors.pesoMin && !errors.pesoMax && (
                     <div className={style.select}>
                         <button type='submit' >Crear Raza</button>
                     </div>

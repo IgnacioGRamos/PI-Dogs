@@ -25,7 +25,7 @@ const getApiInfo = async () => {
                 id: ob.id,
                 nombre: ob.name,
                 peso: ob.weight.metric,
-                temperamento: 'No hay datos sobre el temperamento',
+                temperamentos: 'No hay datos sobre el temperamento',
                 image: ob.image.url
             }
         }
@@ -34,7 +34,7 @@ const getApiInfo = async () => {
                 id: ob.id,
                 nombre: ob.name,
                 peso: ob.weight.metric,
-                temperamento: ob.temperament,
+                temperamentos: ob.temperament,
                 image: ob.image.url
             }
         }
@@ -58,7 +58,27 @@ const getDbInfo = async () => {
 const getAllRazas = async () => {
     const apiInfo = await getApiInfo();
     const dbInfo = await getDbInfo();
-    const allInfo = await apiInfo.concat(dbInfo);
+    
+    const dbInfo1 = dbInfo.map( ob => {
+        return {
+            id: ob.id,
+            nombre: ob.nombre,
+            altura:`${ob.alturaMin} - ${ob.alturaMax}`,
+            // alturaMin: ob.alturaMin,
+            // alturaMax: ob.alturaMax,
+            peso:`${ob.pesoMin} - ${ob.pesoMax}`,
+            // pesoMin: ob.pesoMin,
+            // pesoMax: ob.pesoMax,
+            añosdevida:`${ob.añosdevidaMin} - ${ob.añosdevidaMax} years`,
+            // añosdevidaMin: ob.añosdevidaMin,
+            // añosdevidaMax: ob.añosdevidaMax,
+            image: ob.image,
+            createdInDb: ob.createdInDb,
+            temperamentos: ob.temperamentos.map( el => el.nombre).join(', ')
+        }
+    }
+    )
+    const allInfo = await apiInfo.concat(dbInfo1);
     return allInfo;
 }
 

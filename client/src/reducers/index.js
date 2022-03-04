@@ -38,11 +38,14 @@ const initialState = {
           razas: action.payload === 'all' ? state.allRazas : createdFilter
 
         }
+        
 
         case 'FILTER_BY_TEMPERAMENT':
-        const aux = state.allRazas
-        const RazasFilter = aux.filter( el => el.createdInDb ? el.temperamentos.map( ob => ob.nombre === action.payload) : el.temperamento.includes(action.payload))
-        // aux.filter(el => el.temperamento? el.temperamento.includes(action.payload) : el.temperamentos.nombre === action.payload) 
+        const aux = state.allRazas         
+
+        const RazasFilter = aux.filter( el => el.temperamentos.includes(action.payload))
+
+
         return {
           ...state,
           razas:  RazasFilter
@@ -88,12 +91,12 @@ const initialState = {
         }
         if( action.payload === 'ascendente') {
           arr = state.razas.sort(function (a, b) {
-             return parseInt(a.peso.split(' ')[0]) - parseInt(b.peso.split(' ')[0])
+             return parseInt(a.peso.split(' ')[2]) - parseInt(b.peso.split(' ')[2])
           })
         }
         if( action.payload === 'descendente') {
           arr = state.razas.sort(function (a, b) {
-             return parseInt(b.peso.split(' ')[0]) - parseInt(a.peso.split(' ')[0])
+             return parseInt(b.peso.split(' ')[2]) - parseInt(a.peso.split(' ')[2])
           })
         }
           

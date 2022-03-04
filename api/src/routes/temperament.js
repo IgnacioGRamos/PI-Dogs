@@ -26,18 +26,36 @@ module.exports = router.get('/', async (req, res) => {
             return ob.temperament.split(',')
         }
     });
+    // console.log(apiInfo);
 
     const setInfoDb = apiInfo.map( arr => {
         for( var i =0; i < arr.length; i++) return arr[i] });
 
+        console.log(setInfoDb)
+
     const infoDb = setInfoDb.filter( el => el !== 'No tiene temperamento')
-    infoDb.forEach( el => {Temperamento.findOrCreate({
+
+
+    const tem = [];
+    for( var i = 0; i < infoDb.length; i++) {
+        if( !tem.includes(infoDb[i])) {
+            tem.push(infoDb[i])
+        }
+    }
+
+    console.log(tem);
+    console.log(tem.length);
+    console.log(infoDb.length)
+
+
+    tem.forEach( el => {Temperamento.findOrCreate({
         where: {
             nombre: el
         }
       })
     });
-
+    
     var AllTemperaments = await Temperamento.findAll();
+    console.log(AllTemperaments.length)
     res.status(200).send(AllTemperaments);   
 });

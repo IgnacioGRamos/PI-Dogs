@@ -17,13 +17,13 @@ export default function Detail() {
 
     useEffect(() => {
         dispatch(getDetail(id))
-    }, [dispatch]);
+    }, []);
 
-    
-
-    function handleSetDetail() {
-        dispatch(setDetail())
-    }
+    useEffect(() => {
+        return () => {
+            dispatch(setDetail())
+        }
+    }, []);
     
 
     return(
@@ -33,10 +33,20 @@ export default function Detail() {
             </div>
             <div className={style.general}>
 
-                {myRaza.length > 0 ? 
+            {myRaza.length > 0 ? 
                 <div className={style.card}>
                     <h1 className={style.center}>{myRaza[0].nombre}</h1>
-                    <h2 className={style.center}>{myRaza[0].temperamentos? myRaza[0].temperamentos.map(el => el.nombre + ' ') : myRaza[0].temperamento.split(',').map( el => el) }</h2>
+                    {/* <h2 className={style.center}>{myRaza[0].temperamentos.split(',').map( el => el) }</h2> */}
+
+                    <h2 className={style.temperamentos}>
+                        {
+                           myRaza[0].temperamentos.split(',').map( el =>
+                                <span className={style.temperamento}>
+                                    <span>{el}</span>
+                                </span>) 
+                        }
+                    </h2>
+
                     <h2 className={style.center}>Altura: {myRaza[0].altura} cm</h2>
                     <h2 className={style.center}>Peso: {myRaza[0].peso} kgs</h2>
                     { myRaza[0].añosdevida && (
@@ -50,11 +60,11 @@ export default function Detail() {
                 </div>
                 :
                 <h1 className="loader">Loading...</h1>
-                }
+            }
 
             </div>
             <div className={style.volver}>
-                <Link to='/home' className={style.button} onClick={() => handleSetDetail()} >Volver</Link>
+                <Link to='/home' className={style.button}>Volver</Link>
             </div>
             
         </div>

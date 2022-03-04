@@ -7,11 +7,6 @@ import { setDetail } from "../actions";
 export function Nav() {
   const dispatch = useDispatch();
 
-  function handleSetDetail() {
-    dispatch(setDetail())
-  }
-
-
   return (
     <nav className={style.nav} >
       <div className={style.link}>
@@ -19,7 +14,7 @@ export function Nav() {
       </div>
       
       <div className={style.span}>
-          <Link to='/home' className={style.text} onClick={() => handleSetDetail()} >Razas</Link>
+          <Link to='/home' className={style.text} >Razas</Link>
           <Link to='/create' className={style.text}>Crear Raza</Link>
       </div>
       
