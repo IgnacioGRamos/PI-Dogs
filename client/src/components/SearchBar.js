@@ -1,4 +1,4 @@
-import react from 'react'
+
 import { useState } from 'react'
 import {useDispatch} from 'react-redux';
 import { getRazasByName } from '../actions';
@@ -16,7 +16,7 @@ export default function SearchBar () {
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(getRazasByName(name));
-        // setName('');
+        document.getElementById('input').value = ''; 
     }
 
 
@@ -24,7 +24,8 @@ export default function SearchBar () {
         <div className={style.search}>
             <input type='text' 
             placeholder='Buscar...'
-            onChange={(e) => handleInputChange(e) } />
+            onChange={(e) => handleInputChange(e) }
+            id='input' />
             <button type='submit' onClick={(e) => handleSubmit(e)} >Buscar</button>
         </div>
     )

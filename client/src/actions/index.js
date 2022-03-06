@@ -12,6 +12,8 @@ export function getRazas() {
     };
 };
 
+
+
 export function getTemperaments() {
   return  async function(dispatch) {
     var info = await axios.get('http://localhost:3001/temperament');

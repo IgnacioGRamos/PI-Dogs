@@ -1,11 +1,8 @@
 import React from 'react';
-import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import style from './CSS/Nav.module.css'
-import { setDetail } from "../actions";
 
 export function Nav() {
-  const dispatch = useDispatch();
 
   return (
     <nav className={style.nav} >

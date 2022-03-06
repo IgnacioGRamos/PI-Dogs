@@ -2,14 +2,9 @@
 const express = require('express')
 const axios = require('axios')
 const { Temperamento } = require('../db.js')
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 
 
 const router = express.Router();
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
 router.use(express.json());
 
 const {
@@ -26,12 +21,11 @@ module.exports = router.get('/', async (req, res) => {
             return ob.temperament.split(',')
         }
     });
-    // console.log(apiInfo);
 
     const setInfoDb = apiInfo.map( arr => {
         for( var i =0; i < arr.length; i++) return arr[i] });
 
-        console.log(setInfoDb)
+        
 
     const infoDb = setInfoDb.filter( el => el !== 'No tiene temperamento')
 
@@ -43,10 +37,6 @@ module.exports = router.get('/', async (req, res) => {
         }
     }
 
-    console.log(tem);
-    console.log(tem.length);
-    console.log(infoDb.length)
-
 
     tem.forEach( el => {Temperamento.findOrCreate({
         where: {
@@ -56,6 +46,5 @@ module.exports = router.get('/', async (req, res) => {
     });
     
     var AllTemperaments = await Temperamento.findAll();
-    console.log(AllTemperaments.length)
     res.status(200).send(AllTemperaments);   
 });

@@ -64,14 +64,8 @@ const getAllRazas = async () => {
             id: ob.id,
             nombre: ob.nombre,
             altura:`${ob.alturaMin} - ${ob.alturaMax}`,
-            // alturaMin: ob.alturaMin,
-            // alturaMax: ob.alturaMax,
             peso:`${ob.pesoMin} - ${ob.pesoMax}`,
-            // pesoMin: ob.pesoMin,
-            // pesoMax: ob.pesoMax,
             añosdevida:`${ob.añosdevidaMin} - ${ob.añosdevidaMax} years`,
-            // añosdevidaMin: ob.añosdevidaMin,
-            // añosdevidaMax: ob.añosdevidaMax,
             image: ob.image,
             createdInDb: ob.createdInDb,
             temperamentos: ob.temperamentos.map( el => el.nombre).join(', ')
@@ -92,10 +86,7 @@ module.exports = router.get('/', async (req, res) => {
 
     if( name ) {
         let dog = await allDogs.filter( ob => ob.nombre.toLowerCase().includes(name.toLowerCase()));
-        dog.length ? 
-        res.status(200).send(dog):
-        res.status(404).send('No se encontro la Raza')
-        
+        res.status(200).send(dog) 
     }
     else {
         res.status(200).send(allDogs)

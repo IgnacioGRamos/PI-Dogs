@@ -60,17 +60,6 @@ const getAllRazas = async () => {
 
     const dbInfo1 = dbInfo.map( ob => {
         return {
-            // id: ob.id,
-            // nombre: ob.nombre,
-            // alturaMin: ob.alturaMin,
-            // alturaMax: ob.alturaMax,
-            // pesoMin: ob.pesoMin,
-            // pesoMax: ob.pesoMax,
-            // añosdevidaMin: ob.añosdevidaMin,
-            // añosdevidaMax: ob.añosdevidaMax,
-            // image: ob.image,
-            // createdInDb: ob.createdInDb,
-            // temperamentos: ob.temperamentos.map( el => el.nombre).join(', ')
             id: ob.id,
             nombre: ob.nombre,
             altura:`${ob.alturaMin} - ${ob.alturaMax}`,

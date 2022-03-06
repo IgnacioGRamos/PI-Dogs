@@ -47,6 +47,7 @@ export default function Home() {
     }, []);
 
     function handleFilterCreated(e) {
+        setCurrentPage(1)
         dispatch(filterCreated(e.target.value))
     }
 
@@ -58,6 +59,7 @@ export default function Home() {
     }
 
     function handleFilterTemperament(e) {
+        setCurrentPage(1)
         dispatch(filterByTemperament(e.target.value))
     }
 
@@ -106,13 +108,14 @@ export default function Home() {
             
 
             <div className={style.cards} >
-                {currentRazas?.map((el) => {
+                {allRazas.length > 0? currentRazas.map((el) => {
                     return ( 
                         <Link to={`/home/${el.id}`} className={style.link} > 
                                 <Card nombre={el.nombre} id={el.id} peso={el.peso} image={el.image ? el.image : url} temperamento={el.temperamentos.split(',')} key={el.id} />
                         </Link >
                     )
-                })
+                }):
+                <div className={style.found}> Raza not found</div>
                 }
             </div>
 

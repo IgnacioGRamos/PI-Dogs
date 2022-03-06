@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(./img/back4.jpg);
+    background-image: url(./img/back12.jpeg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -18,7 +18,9 @@
 .titulo {
     font-size: xxx-large;
     margin-bottom: 300px;
-    color:rgb(104, 94, 94);
+    /* color:rgb(104, 94, 94); */
+    /* color: lightseagreen; */
+    color: black;
 }
 
 .explore {
